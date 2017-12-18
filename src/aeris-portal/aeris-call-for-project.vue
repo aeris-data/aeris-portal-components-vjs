@@ -46,7 +46,7 @@
 </i18n>
 
 <template>
-<div>
+<div style="padding: 50px;">
 <div class="info-message" v-show="!closed">
 <div style="text-align:right"><i class="fa fa-close button" @click="closed=true"></i></div>
 <div style="display: flex;justify-content: space-around">
@@ -69,7 +69,7 @@
 
 </div>
 
-<h3>{{$t('descriptionTitle')}}</h3>
+<h2>{{$t('descriptionTitle')}}</h2>
 <div class="form">
 
 <label for="name" :class="{'error-label': errors.has('name') }">{{$t("name")}} :</label>
@@ -98,7 +98,7 @@
 
 </div>
 
-<h3>{{$t('responsibles')}}</h3>
+<h2>{{$t('responsibles')}}</h2>
 <div class="form">
 <div></div>
 <table width="100%">
@@ -123,7 +123,7 @@
 </table>
 </div>
 
-<h3>{{$t('dueDate')}}</h3>
+<h2>{{$t('dueDate')}}</h2>
 
 
 <button @click="send"></button>
