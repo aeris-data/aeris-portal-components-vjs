@@ -1,7 +1,7 @@
 {
   "name": "aeris-portal-components-vjs",
   "description": "Aeris portal components. ",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Aeris",
   "private": false,
   "scripts": {

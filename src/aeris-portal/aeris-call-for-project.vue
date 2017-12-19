@@ -103,22 +103,22 @@
 <div></div>
 <table width="100%">
 <tr>
-<th>{{$t('name')}}</th>
-<th>{{$t('email')}}</th>
-<th>{{$t('organisation')}}</th>
-<th></th>
+<th class="white noborder">{{$t('name')}}</th>
+<th class="white noborder">{{$t('email')}}</th>
+<th class="white noborder">{{$t('organisation')}}</th>
+<th class="white noborder"></th>
 </tr>
 <tr v-for="contact in contacts">
-<td>{{contact.name}}</td>
-<td>{{contact.email}}</td>
-<td>{{contact.organisation}}</td>
-<td><i class="fa fa-trash button" :title="$t('delete')" @click="destroy(contact)"></i></td>
+<td class="noborder">{{contact.name}}</td>
+<td class="noborder">{{contact.email}}</td>
+<td class="noborder">{{contact.organisation}}</td>
+<td class="noborder"><i class="fa fa-trash button" :title="$t('delete')" @click="destroy(contact)"></i></td>
 </tr>
 <tr >
-<td><input v-model="currentContact.name"></td>
-<td><input v-model="currentContact.email"></td>
-<td><input v-model="currentContact.organisation"></td>
-<td><i class="fa fa-user-plus button" :title="$t('add')" @click="add"></i></td>
+<td class="noborder"><input v-model="currentContact.name" style="width:100%"></td>
+<td class="noborder"><input v-model="currentContact.email" style="width:100%"></td>
+<td class="noborder"><input v-model="currentContact.organisation" style="width:100%"></td>
+<td class="noborder"><i class="fa fa-user-plus button" :title="$t('add')" @click="add"></i></td>
 </tr>
 </table>
 </div>
@@ -238,7 +238,14 @@ table {
 
 table tr {
 	border-bottom: 1px solid silver
-	
+}
+
+table td.noborder, table th.noborder {
+    border: 0px solid white;
+}
+
+table th.white {
+	background: #fff;
 }
 
 .button {
