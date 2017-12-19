@@ -11,6 +11,7 @@
   	"scientificSupportPlaceholder": "Indicate national, European or international programs linked with the project.\\nIndicate which support is provided by these programs.",
   	"scientificContextPlaceholder": "Indicate the scientific context of the project",
   	"consideredUse":"Considered use",
+  	"consideredUsePlaceholder": "Indicate any information related to the considered use of the product : domain, community size, uses...\\nDescribe in which way the realisation of the project has an interest or applications within the AERIS community and beyond",
   	"responsibles": "Responsibles",
   	"send": "Send",
   	"submissionLimitDate": "Submission limit date",
@@ -19,7 +20,13 @@
   	"contactInstructions": "If you need some help to fill this form, you can contact us: ",
   	"add":"Add",
   	"noContacts": "No contacts.",
-  	"dueDate": "Due date"
+  	"dueDate": "Due date",
+  	"mandatoryField": "This field is mandatory",
+  	"computerResources" : "Computing resources",
+  	"humanResources": "Human resources",
+  	"humanResourcesPlaceholder": "Indicate human resources assigned to the project by the applicant: \\n- involved laboratories \\n- participating researchers (and their percentage of time on the project) \\n- technical workers (and their percentage of time on the project)",
+  	"computerResourcesPlaceholder":"Indicate computer resources assigned to the project by the applicant"
+
   },
   "fr": {
 	"descriptionTitle": "Description du projet",
@@ -32,6 +39,7 @@
 	"descriptionPlaceholder": "Décrivez de manière détaillée les services, mise en place ou traitement de données demandées par le projet",
 	"scientificContextPlaceholder": "Indiquez le contexte scientifique du projet",
 	"consideredUse":"Utilisation envisagée",
+	"consideredUsePlaceholder":"Indiquez les informations relatives à l'utilisation envisagée du produit: domaine, taille de la communauté, utilisations ...\\nDécrivez en quoi la réalisation du projet a un intérêt ou des applications pour la communauté AERIS et au delà",
 	"responsibles": "Responsables",
 	"send": "Envoyer",
 	"submissionLimitDate": "Date limite de soumission",
@@ -40,7 +48,13 @@
 	"contactInstructions": "Si vous avez besoin d'assistance pour remplir votre demande, n'hésitez pas à nous contacter : ",
 	"add":"Ajouter",
   	"noContacts": "Aucun contacts.",
-  	"dueDate": "Echéance"
+  	"dueDate": "Echéance",
+  	"mandatoryField": "Ce champ est obligatoire",
+  	"computerResources" : "Ressources informatiques",
+  	"humanResources": "Ressources humaines",
+  	"computerResourcesPlaceholder": "Indiquez les ressources informatiques affectées au projet par le proposant",
+  	"humanResourcesPlaceholder":"Indiquez les ressources humaines affectées au projet par le proposant : \\n- laboratoires impliqués \\n- Chercheurs participants (et leurs pourcentages de temps sur le projet) \\n- Personnel technique (et leurs pourcentages de temps sur le projet)"
+
   }
 }
 </i18n>
@@ -75,26 +89,47 @@
 <label for="name" :class="{'error-label': errors.has('name') }">{{$t("name")}} :</label>
 <div style="display:grid" >
 <input id="name" type="text" v-model="name" v-validate="name" data-vv-rules="required" :class="{'is-error': errors.has('name') }"> </input>
-<span class="error-message">{{ errors.first('name') }} </span>
+<span class="error-message" v-show="errors.has('name')">{{ $t('mandatoryField') }} </span>
 </div>
 
 <label for="description" :class="{'error-label': errors.has('description') }">{{$t("description")}} :</label>
 <div style="display:grid" >
 <textarea id="description" type="text" :placeHolder="$t('descriptionPlaceholder')" rows="10" v-model="description" v-validate="description" data-vv-rules="required" :class="{'is-error': errors.has('description') }"> </textarea>
-<span class="error-message">{{ errors.first('description') }} </span>
+<span class="error-message" v-show="errors.has('description')">{{ $t('mandatoryField') }} </span>
 </div>
 
 <label for="scientificContext" :class="{'error-label': errors.has('scientificContext') }">{{$t("scientificContext")}} :</label>
 <div style="display:grid" >
 <textarea id="scientificContext" type="text" :placeHolder="$t('scientificContextPlaceholder')" rows="10" v-model="scientificContext" v-validate="scientificContext" data-vv-rules="required" :class="{'is-error': errors.has('scientificContext') }"> </textarea>
-<span class="error-message">{{ errors.first('scientificContext') }} </span>
+<span class="error-message" v-show="errors.has('scientificContext')">{{ $t('mandatoryField') }} </span>
 </div>
 
 <label for="scientificSupport" :class="{'error-label': errors.has('scientificSupport') }">{{$t("scientificSupport")}} :</label>
 <div style="display:grid" >
 <textarea id="scientificSupport" type="text" :placeHolder="$t('scientificSupportPlaceholder')" rows="10" v-model="scientificSupport" v-validate="scientificSupport" data-vv-rules="required" :class="{'is-error': errors.has('scientificSupport') }"> </textarea>
-<span class="error-message">{{ errors.first('scientificSupport') }} </span>
+<span class="error-message" v-show="errors.has('scientificSupport')">{{ $t('mandatoryField') }} </span>
 </div>
+
+<label for="consideredUse" :class="{'error-label': errors.has('consideredUse') }">{{$t("consideredUse")}} :</label>
+<div style="display:grid" >
+<textarea id="consideredUse" type="text" :placeHolder="$t('consideredUsePlaceholder')" rows="10" v-model="consideredUse" v-validate="consideredUse" data-vv-rules="required" :class="{'is-error': errors.has('consideredUse') }"> </textarea>
+<span class="error-message" v-show="errors.has('consideredUse')">{{ $t('mandatoryField') }} </span>
+</div>
+
+<label for="humanResources" :class="{'error-label': errors.has('humanResources') }">{{$t("humanResources")}} :</label>
+<div style="display:grid" >
+<textarea id="humanResources" type="text" :placeHolder="$t('humanResourcesPlaceholder')" rows="10" v-model="humanResources" v-validate="humanResources" data-vv-rules="required" :class="{'is-error': errors.has('humanResources') }"> </textarea>
+<span class="error-message" v-show="errors.has('humanResources')">{{ $t('mandatoryField') }} </span>
+</div>
+
+<label for="computerResources" :class="{'error-label': errors.has('computerResources') }">{{$t("computerResources")}} :</label>
+<div style="display:grid" >
+<textarea id="computerResources" type="text" :placeHolder="$t('computerResourcesPlaceholder')" rows="10" v-model="computerResources" v-validate="computerResources" data-vv-rules="required" :class="{'is-error': errors.has('computerResources') }"> </textarea>
+<span class="error-message" v-show="errors.has('computerResources')">{{ $t('mandatoryField') }} </span>
+</div>
+
+
+
 
 </div>
 
@@ -106,7 +141,7 @@
 <th class="white noborder">{{$t('name')}}</th>
 <th class="white noborder">{{$t('email')}}</th>
 <th class="white noborder">{{$t('organisation')}}</th>
-<th class="white noborder"></th>
+<th class="white noborder" style="width:20px"></th>
 </tr>
 <tr v-for="contact in contacts">
 <td class="noborder">{{contact.name}}</td>
@@ -193,6 +228,9 @@ export default {
 			description: null,
 			scientificContext: null,
 			scientificSupport: null,
+			consideredUse: null,
+			humanResources: null,
+			computerResources: null,
 			currentContact: {},
 			closed: false,
 			contacts: []
