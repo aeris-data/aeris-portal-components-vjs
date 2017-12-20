@@ -25,7 +25,9 @@
   	"computerResources" : "Computing resources",
   	"humanResources": "Human resources",
   	"humanResourcesPlaceholder": "Indicate human resources assigned to the project by the applicant: \\n- involved laboratories \\n- participating researchers (and their percentage of time on the project) \\n- technical workers (and their percentage of time on the project)",
-  	"computerResourcesPlaceholder":"Indicate computer resources assigned to the project by the applicant"
+  	"computerResourcesPlaceholder":"Indicate computer resources assigned to the project by the applicant",
+  	"justification": "Justification"
+  	
 
   },
   "fr": {
@@ -53,8 +55,8 @@
   	"computerResources" : "Ressources informatiques",
   	"humanResources": "Ressources humaines",
   	"computerResourcesPlaceholder": "Indiquez les ressources informatiques affectées au projet par le proposant",
-  	"humanResourcesPlaceholder":"Indiquez les ressources humaines affectées au projet par le proposant : \\n- laboratoires impliqués \\n- Chercheurs participants (et leurs pourcentages de temps sur le projet) \\n- Personnel technique (et leurs pourcentages de temps sur le projet)"
-
+  	"humanResourcesPlaceholder":"Indiquez les ressources humaines affectées au projet par le proposant : \\n- laboratoires impliqués \\n- Chercheurs participants (et leurs pourcentages de temps sur le projet) \\n- Personnel technique (et leurs pourcentages de temps sur le projet)",
+  	"justification": "Justification"
   }
 }
 </i18n>
@@ -159,7 +161,19 @@
 </div>
 
 <h2>{{$t('dueDate')}}</h2>
+<div class="form">
+<label for="dueDate" :class="{'error-label': errors.has('dueDate') }">{{$t("dueDate")}} :</label>
+<div style="display:grid" >
+<input id="name" type="text" v-model="dueDate" v-validate="dueDate" data-vv-rules="required" :class="{'is-error': errors.has('dueDate') }"> </input>
+<span class="error-message" v-show="errors.has('dueDate')">{{ $t('mandatoryField') }} </span>
+</div>
 
+<label for="justification" :class="{'error-label': errors.has('justification') }">{{$t("justification")}} :</label>
+<div style="display:grid" >
+<textarea id="justification" type="text" rows="4" v-model="description" v-validate="justification" data-vv-rules="required" :class="{'is-error': errors.has('justification') }"> </textarea>
+<span class="error-message" v-show="errors.has('justification')">{{ $t('mandatoryField') }} </span>
+</div>
+</div>	
 
 <button @click="send"></button>
 </div>
@@ -233,7 +247,9 @@ export default {
 			computerResources: null,
 			currentContact: {},
 			closed: false,
-			contacts: []
+			contacts: [],
+			dueDate: null,
+			justification: null
 			}
 	},
   
