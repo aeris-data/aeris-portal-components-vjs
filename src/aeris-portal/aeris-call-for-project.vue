@@ -26,8 +26,10 @@
   	"humanResources": "Human resources",
   	"humanResourcesPlaceholder": "Indicate human resources assigned to the project by the applicant: \\n- involved laboratories \\n- participating researchers (and their percentage of time on the project) \\n- technical workers (and their percentage of time on the project)",
   	"computerResourcesPlaceholder":"Indicate computer resources assigned to the project by the applicant",
-  	"justification": "Justification"
-  	
+  	"justification": "Justification",
+  	"applicantInformation": "Applicant information",
+  	"email": "Email",
+  	"send": "Send"
 
   },
   "fr": {
@@ -56,7 +58,10 @@
   	"humanResources": "Ressources humaines",
   	"computerResourcesPlaceholder": "Indiquez les ressources informatiques affectées au projet par le proposant",
   	"humanResourcesPlaceholder":"Indiquez les ressources humaines affectées au projet par le proposant : \\n- laboratoires impliqués \\n- Chercheurs participants (et leurs pourcentages de temps sur le projet) \\n- Personnel technique (et leurs pourcentages de temps sur le projet)",
-  	"justification": "Justification"
+  	"justification": "Justification",
+  	"applicantInformation": "Informations concernant le proposant",
+  	"email": "Mél",
+  	"send": "Envoyer"
   }
 }
 </i18n>
@@ -175,7 +180,25 @@
 </div>
 </div>	
 
-<button @click="send"></button>
+<h2>{{$t('applicantInformation')}}</h2>
+<div class="form">
+
+<label for="applicantname" :class="{'error-label': errors.has('applicantname') }">{{$t("name")}} :</label>
+<div style="display:grid" >
+<input id="applicantname" type="text" v-model="applicantname" v-validate="applicantname" data-vv-rules="required" :class="{'is-error': errors.has('applicantname') }"> </input>
+<span class="error-message" v-show="errors.has('applicantname')">{{ $t('mandatoryField') }} </span>
+</div>
+
+<label for="applicantemail" :class="{'error-label': errors.has('applicantemail') }">{{$t("email")}} :</label>
+<div style="display:grid" >
+<input id="applicantemail" type="text" v-model="applicantemail" v-validate="applicantemail" data-vv-rules="required" :class="{'is-error': errors.has('applicantemail') }"> </input>
+<span class="error-message" v-show="errors.has('applicantemail')">{{ $t('mandatoryField') }} </span>
+</div>
+
+</div>
+
+
+<button @click="send">{{$t('send')}}</button>
 </div>
 </template>
 
@@ -249,7 +272,12 @@ export default {
 			closed: false,
 			contacts: [],
 			dueDate: null,
-			justification: null
+			justification: null,
+			applicantname:null,
+			applicantEmail:null,
+			applicantLaboratory:null,
+			directorname:null,
+			directoremail:null
 			}
 	},
   
@@ -290,7 +318,7 @@ table {
 	border-collapse: collapse;
 }
 
-table tr {
+table tr:not(:last-child) {
 	border-bottom: 1px solid silver
 }
 
