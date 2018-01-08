@@ -29,7 +29,10 @@
   	"justification": "Justification",
   	"applicantInformation": "Applicant information",
   	"email": "Email",
-  	"send": "Send"
+  	"send": "Send",
+  	"laboratory": "Laboratory",
+  	"laboratoryresponsible": "Responsible of the laboratory",
+  	"warningmessage": "This form will be activated on January 15, 2018."
 
   },
   "fr": {
@@ -61,7 +64,10 @@
   	"justification": "Justification",
   	"applicantInformation": "Informations concernant le proposant",
   	"email": "Mél",
-  	"send": "Envoyer"
+  	"send": "Envoyer",
+  	"laboratory": "Laboratoire",
+  	"laboratoryresponsible": "Responsable du laboratoire",
+  	"warningmessage": "Ce formulaire sera activé le 15 janvier 2018"
   }
 }
 </i18n>
@@ -195,10 +201,38 @@
 <span class="error-message" v-show="errors.has('applicantemail')">{{ $t('mandatoryField') }} </span>
 </div>
 
+<label for="applicantlaboratory" :class="{'error-label': errors.has('applicantlaboratory') }">{{$t("laboratory")}} :</label>
+<div style="display:grid" >
+<input id="applicantlaboratory" type="text" v-model="applicantlaboratory" v-validate="applicantlaboratory" data-vv-rules="required" :class="{'is-error': errors.has('applicantlaboratory') }"> </input>
+<span class="error-message" v-show="errors.has('applicantlaboratory')">{{ $t('mandatoryField') }} </span>
+</div>
+
+</div>
+<h3>{{$t('laboratoryresponsible')}}</h3>
+<div class="form">
+<label for="responsiblename" :class="{'error-label': errors.has('applicantname') }">{{$t("name")}} :</label>
+<div style="display:grid" >
+<input id="responsiblename" type="text" v-model="responsiblename" v-validate="responsiblename" data-vv-rules="required" :class="{'is-error': errors.has('responsiblename') }"> </input>
+<span class="error-message" v-show="errors.has('responsiblename')">{{ $t('mandatoryField') }} </span>
+</div>
+
+<label for="responsibleemail" :class="{'error-label': errors.has('responsibleemail') }">{{$t("email")}} :</label>
+<div style="display:grid" >
+<input id="responsibleemail" type="text" v-model="responsibleemail" v-validate="responsibleemail" data-vv-rules="required" :class="{'is-error': errors.has('responsibleemail') }"> </input>
+<span class="error-message" v-show="errors.has('responsibleemail')">{{ $t('mandatoryField') }} </span>
+</div>
+
 </div>
 
 
-<button @click="send">{{$t('send')}}</button>
+<div class="warning-message">
+<div style="display: flex;justify-content: space-around">
+{{$t('warningmessage')}}	
+</div>
+</div>
+
+
+<button disabled @click="send">{{$t('send')}}</button>
 </div>
 </template>
 
@@ -274,8 +308,8 @@ export default {
 			dueDate: null,
 			justification: null,
 			applicantname:null,
-			applicantEmail:null,
-			applicantLaboratory:null,
+			applicantemail:null,
+			applicantlaboratory:null,
 			directorname:null,
 			directoremail:null
 			}
@@ -390,4 +424,13 @@ input {
     border-radius: 4px;
 }
 
+
+.warning-message {
+	background-color: #fcf8e3;
+	border: 1px solid #faf2cc;
+	color: #8a6d3b;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
  </style>
